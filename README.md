@@ -38,7 +38,7 @@ Run `scripts/verify_orderweave.py launch` with the local Python environment, the
 
 The inherited JavaScript tree has known advisories. The audit observed 46 findings including development dependencies, or 14 with development dependencies omitted; these include build-tool dependencies and are not a count of demonstrated browser exploits. See [dependency audit limits](docs/dependency-audit.md). No production deployment or security certification is claimed.
 
-GitHub Actions runs the pinned Python bootstrap, focused module tests, and full RPC verifier for pushes and pull requests targeting `orderweave`. The workflow also builds Sao and uploads retained RPC and exact web-asset evidence. Browser interaction is unrun.
+The [Windows verification workflow](.github/workflows/orderweave.yml) runs the pinned Python bootstrap, scoped lint, focused module tests, and full RPC verifier for pushes and pull requests targeting `orderweave`. The workflow also builds Sao and uploads retained RPC and exact web-asset evidence. Browser interaction is unrun.
 
 The Windows host may still report Tryton’s UTC timezone warning because Windows does not apply `TZ` like a POSIX host. The verifier does not change the system timezone. Date-sensitive production operation has not been qualified.
 
