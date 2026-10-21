@@ -23,3 +23,7 @@ Run `.venv/Scripts/python.exe scripts/verify_orderweave.py launch`, then `doctor
 - SQLite gives this verifier serialized single-process writes. The unique source and external-order constraint prevents duplicate import rows, but SQLite does not establish production concurrency guarantees.
 - Product and company IDs belong to the verifier database. Do not reuse them in another database.
 - A confirmed sale cannot be compensated automatically. The import moves to manual review and leaves the sale intact.
+
+## Observed evidence
+
+[Hosted run39541127981](https://github.com/STEVVVU/orderweave-erp/actions/runs/39541127981), source `dae5a09ba0`, passed the locked Sao build, scoped Flake8, all 30 module checks and the full authenticated RPC drive. Downloaded JSON records a single receipt, completion after server restart, exact `24.60` reconciliation, protected checkpoint refusals, eligible cancellation and manual review. HTTP checks matched built index/JavaScript/CSS bytes. The hosted log confirms owned server and scratch cleanup with retained evidence. Browser rendering, PostgreSQL and production concurrency remain unverified.

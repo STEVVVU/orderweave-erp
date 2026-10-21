@@ -42,7 +42,7 @@ The [Windows verification workflow](.github/workflows/orderweave.yml) runs the p
 
 The Windows host may still report Tryton’s UTC timezone warning because Windows does not apply `TZ` like a POSIX host. The verifier does not change the system timezone. Date-sensitive production operation has not been qualified.
 
-The local module suite passed 30 checks. The scoped Flake8 check passed, Sao’s Grunt build passed, and the real RPC verifier passed duplicate/conflict refusal, protected-checkpoint refusal, lost-ack recovery across server restart, compensation, and exact total reconciliation. Main-agent checks confirmed the owned listener and scratch directory were removed while evidence remained. Hosted results are recorded separately after the workflow runs.
+The local module suite passed 30 checks. The scoped Flake8 check passed, Sao’s Grunt build passed, and the real RPC verifier passed duplicate/conflict refusal, protected-checkpoint refusal, lost-ack recovery across server restart, compensation, and exact total reconciliation. Main-agent checks confirmed the owned listener and scratch directory were removed while evidence remained. [Hosted verification](https://github.com/STEVVVU/orderweave-erp/actions/runs/39541127981) passed the same checks at `dae5a09ba0`, including the Node 24 web build, all 30 module checks, authenticated RPC recovery, exact served asset bytes, and owned cleanup. The downloaded evidence retained one receipt and matching `24.60` totals after restart.
 
 ## Module files
 
