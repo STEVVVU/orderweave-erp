@@ -1,0 +1,50 @@
+name: Orderweave
+
+on:
+  push:
+    branches: [orderweave]
+  pull_request:
+    branches: [orderweave]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    runs-on: windows-2025
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Build the inherited Sao web client
+        working-directory: sao
+        run: |
+          npm ci --legacy-peer-deps --ignore-scripts --no-audit --no-fund
+          npx --no-install grunt
+      - name: Bootstrap pinned local source
+        run: python scripts/bootstrap_orderweave.py
+      - name: Lint the fork module and maintained drivers
+        run: .\.venv\Scripts\python.exe -m flake8 modules/orderweave scripts/bootstrap_orderweave.py scripts/verify_orderweave.py
+      - name: Run focused module tests
+        shell: pwsh
+        run: |
+          $env:TZ = 'UTC'
+          .\.venv\Scripts\python.exe -m unittest trytond.modules.orderweave.tests.test_module
+      - name: Run authenticated RPC verification
+        shell: pwsh
+        run: |
+          $env:TZ = 'UTC'
+          .\.venv\Scripts\python.exe scripts/verify_orderweave.py run
+      - name: Upload verification evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: orderweave-verification-evidence
+          path: .audit/evidence/
+          if-no-files-found: warn

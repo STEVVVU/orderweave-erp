@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data>
+        <record model="ir.model.access" id="access_import_default">
+            <field name="model">orderweave.import</field>
+            <field name="perm_read" eval="False"/>
+            <field name="perm_write" eval="False"/>
+            <field name="perm_create" eval="False"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.access" id="access_import_sales">
+            <field name="model">orderweave.import</field>
+            <field name="group" ref="sale.group_sale"/>
+            <field name="perm_read" eval="True"/>
+            <field name="perm_write" eval="True"/>
+            <field name="perm_create" eval="True"/>
+            <field name="perm_delete" eval="False"/>
+        </record>
+        <record model="ir.model.button" id="import_advance_button">
+            <field name="model">orderweave.import</field>
+            <field name="name">advance</field>
+            <field name="string">Advance Import</field>
+        </record>
+        <record model="ir.model.button-res.group" id="import_advance_button_sales">
+            <field name="button" ref="import_advance_button"/>
+            <field name="group" ref="sale.group_sale"/>
+        </record>
+        <record model="ir.model.button" id="import_compensate_button">
+            <field name="model">orderweave.import</field>
+            <field name="name">compensate</field>
+            <field name="string">Compensate Import</field>
+        </record>
+        <record model="ir.model.button-res.group" id="import_compensate_button_sales">
+            <field name="button" ref="import_compensate_button"/>
+            <field name="group" ref="sale.group_sale"/>
+        </record>
+        <record model="ir.ui.view" id="import_view_form">
+            <field name="model">orderweave.import</field>
+            <field name="type">form</field>
+            <field name="name">import_form</field>
+        </record>
+        <record model="ir.ui.view" id="import_view_tree">
+            <field name="model">orderweave.import</field>
+            <field name="type">tree</field>
+            <field name="name">import_tree</field>
+        </record>
+        <record model="ir.action.act_window" id="act_import_form">
+            <field name="name">Order Imports</field>
+            <field name="res_model">orderweave.import</field>
+        </record>
+        <record model="ir.ui.menu" id="menu_orderweave">
+            <field name="name">Order Imports</field>
+            <field name="parent" ref="sale.menu_sale"/>
+            <field name="action" ref="act_import_form"/>
+            <field name="sequence" eval="80"/>
+        </record>
+    </data>
+</tryton>

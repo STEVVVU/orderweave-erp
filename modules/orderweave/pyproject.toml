@@ -1,0 +1,26 @@
+[build-system]
+requires = ['hatchling >= 1', 'hatch-tryton']
+build-backend = 'hatchling.build'
+
+[project]
+name = 'trytond_orderweave'
+dynamic = ['version', 'dependencies', 'authors', 'readme']
+requires-python = '>=3.10'
+description = 'Recoverable external order imports for Tryton'
+license = 'GPL-3.0-or-later'
+license-files = ['COPYRIGHT']
+keywords = ['tryton', 'order-import']
+
+[project.entry-points.'trytond.modules']
+orderweave = 'trytond.modules.orderweave'
+
+[tool.hatch.build]
+include = ['**/*.py', '**/*.xml', '**/tryton.cfg']
+
+[tool.hatch.build.targets.wheel.sources]
+"" = "trytond/modules/orderweave"
+
+[tool.hatch.metadata.hooks.tryton]
+dependencies = []
+copyright = 'COPYRIGHT'
+readme = 'README.rst'

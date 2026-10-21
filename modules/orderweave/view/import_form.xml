@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- This file is part of Tryton.  The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<form col="4">
+    <label name="source"/>
+    <field name="source"/>
+    <label name="external_order_id"/>
+    <field name="external_order_id"/>
+    <label name="state"/>
+    <field name="state"/>
+    <label name="sale"/>
+    <field name="sale"/>
+    <label name="payload_hash"/>
+    <field name="payload_hash" colspan="3"/>
+    <label name="expected_total"/>
+    <field name="expected_total"/>
+    <label name="reconciled_total"/>
+    <field name="reconciled_total"/>
+    <label name="last_error"/>
+    <field name="last_error" colspan="3"/>
+    <separator name="payload" colspan="4"/>
+    <field name="payload" colspan="4" height="8"/>
+    <group col="-1" colspan="4" id="buttons">
+        <button name="advance"/>
+        <button name="compensate"/>
+    </group>
+</form>
